@@ -59,6 +59,20 @@ public class AddingFriendsTest {
                 "Имя и дата рождения должны быть Иванов И.И. - 01.01.2001");
     }
 
+    @Test
+    public void RemindCurrentDayTest() {
+        AddingFriends addingFriends = new AddingFriends();
+        String FriendListName = "FriendList.txt";
+        addingFriends.CreateFriendList(FriendListName);
+        String FriendName = "Иванов И.И.";
+        String FriendBirthday = "01.01.2001";
+        addingFriends.AddFriend(FriendListName, FriendName, FriendBirthday);
+        int CurrentDay = 0;
+        Assertions.assertEquals("Иванов И.И. - 01.01.2001",
+                addingFriends.RemindCurrentDay(FriendListName, CurrentDay),
+                "Имя и дата рождения должны быть Иванов И.И. - 01.01.2001");
+    }
+
     @AfterEach
     public void Clean() {
         String FriendListName = "FriendList.txt";
