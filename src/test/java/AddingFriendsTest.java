@@ -1,4 +1,5 @@
 import org.example.AddingFriends;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -18,5 +19,14 @@ public class AddingFriendsTest {
         addingFriends.CreateFriendList(FriendListName);
         File file = new File(FriendListName);
         Assertions.assertTrue(file.exists(), "Файл должен быть успешно создан.");
+    }
+
+    @AfterEach
+    public void Clean() {
+        String FriendListName = "FriendList.txt";
+        File file = new File(FriendListName);
+        if(file.exists()) {
+            file.delete();
+        }
     }
 }
