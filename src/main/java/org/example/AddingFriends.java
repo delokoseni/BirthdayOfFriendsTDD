@@ -35,4 +35,9 @@ public class AddingFriends {
         //todo реализовать метод RemindCurrentMonth позднее до конца
         return "Иванов И.И. - 01.01.2001";
     }
+
+    public String RemindCurrentDay(String FriendListName, int CurrentMonth) {
+        //todo реализовать метод RemindCurrentDay позднее до конца
+        return "Иванов И.И. - 01.01.2001";
+    }
 }
