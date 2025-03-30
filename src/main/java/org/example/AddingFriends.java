@@ -6,6 +6,10 @@ import java.io.IOException;
 public class AddingFriends {
     public AddingFriends() { }
 
+    /**
+     * Метод, создающий файл для списка друзей
+     * @param FriendListName - название создаваемого файла
+     */
     public void CreateFriendList(String FriendListName) {
         try {
             File file = new File(FriendListName);
