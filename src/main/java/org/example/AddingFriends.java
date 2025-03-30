@@ -1,7 +1,9 @@
 package org.example;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class AddingFriends {
     public AddingFriends() { }
@@ -16,6 +18,15 @@ public class AddingFriends {
             file.createNewFile();
         } catch (IOException e) {
             System.out.println("Ошибка при создании файла: " + e.getMessage());
+        }
+    }
+
+    public void AddFriend(String FriendListName, String FriendName, String FriendBirthday) {
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter(FriendListName, true));
+            writer.println(FriendName + " - " + FriendBirthday);
+        } catch (IOException e) {
+            System.out.println("Ошибка при добавлении друга в файл: " + e.getMessage());
         }
     }
 }
