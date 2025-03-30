@@ -30,4 +30,9 @@ public class AddingFriends {
             System.out.println("Ошибка при добавлении друга в файл: " + e.getMessage());
         }
     }
+
+    public String RemindCurrentMonth(String FriendListName, int CurrentMonth) {
+        //todo реализовать метод RemindCurrentMonth позднее до конца
+        return "Иванов И.И. - 01.01.2001";
+    }
 }
