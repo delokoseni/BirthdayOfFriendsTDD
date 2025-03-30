@@ -25,6 +25,7 @@ public class AddingFriends {
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(FriendListName, true));
             writer.println(FriendName + " - " + FriendBirthday);
+            writer.close();
         } catch (IOException e) {
             System.out.println("Ошибка при добавлении друга в файл: " + e.getMessage());
         }
