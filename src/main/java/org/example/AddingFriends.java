@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddingFriends {
     public AddingFriends() { }
@@ -35,8 +37,28 @@ public class AddingFriends {
     }
 
     public String RemindCurrentMonth(String FriendListName, int CurrentMonth) {
-        //todo реализовать метод RemindCurrentMonth позднее до конца
-        return "Иванов И.И. - 01.01.2001";
+        List<String> matchingFriends = new ArrayList<>();
+        int targetMonth = CurrentMonth + 1;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(FriendListName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(" - ");
+                String[] dateParts = parts[1].split("\\.");
+
+                int month = Integer.parseInt(dateParts[1]);
+                if (month == targetMonth) {
+                    matchingFriends.add(line);
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            return "Ошибка чтения файла";
+        }
+        if(matchingFriends.isEmpty()){
+            return "Нет подходящих друзей в списке.";
+        }
+        return String.join("\n", matchingFriends);
     }
 
     public String RemindCurrentDay(String FriendListName, int CurrentDay) {
