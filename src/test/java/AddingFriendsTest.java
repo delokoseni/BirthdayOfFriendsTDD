@@ -151,6 +151,16 @@ public class AddingFriendsTest {
                 "Иванов И.И. - 01.01.2002\n");
     }
 
+    @Test
+    public void RemindCurrentMonthNoFriendsTest() {
+        AddingFriends addingFriends = new AddingFriends();
+        String FriendListName = "FriendList.txt";
+        addingFriends.CreateFriendList(FriendListName);
+        int CurrentMonth = 0;
+        Assertions.assertEquals("Нет подходящих друзей в списке.",
+                addingFriends.RemindCurrentMonth(FriendListName, CurrentMonth));
+    }
+
     @AfterEach
     public void Clean() {
         String FriendListName = "FriendList.txt";
