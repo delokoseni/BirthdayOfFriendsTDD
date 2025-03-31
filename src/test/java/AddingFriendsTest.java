@@ -100,6 +100,37 @@ public class AddingFriendsTest {
                 "Имя и дата рождения должны быть Иванов И.И. - 01.01.2001");
     }
 
+    @Test
+    public void DeleteFriendTest() {
+        AddingFriends addingFriends = new AddingFriends();
+        String FriendListName = "FriendList.txt";
+        addingFriends.CreateFriendList(FriendListName);
+        String FriendName = "Иванов И.И.";
+        String FriendBirthday = "01.01.2001";
+        addingFriends.AddFriend(FriendListName, FriendName, FriendBirthday);
+        FriendName = "Иванов И.И.";
+        FriendBirthday = "01.01.2002";
+        addingFriends.AddFriend(FriendListName, FriendName, FriendBirthday);
+        File file = new File(FriendListName);
+        Assertions.assertTrue(file.exists(), "Файл должен быть успешно создан.");
+        String TargetLine = "Иванов И.И. - 01.01.2002";
+        addingFriends.DeleteFriend(FriendListName, TargetLine);
+        try {
+            Scanner scanner = new Scanner(file);
+            boolean Found = false;
+            while (scanner.hasNextLine()) {
+                String Line = scanner.nextLine();
+                if (Line.equals(TargetLine)) {
+                    Found = true;
+                }
+            }
+            scanner.close();
+            Assertions.assertFalse(Found, "Запись \"Иванов И.И. - 01.01.2002\" должна быть удалена");
+        } catch (FileNotFoundException e) {
+            Assertions.fail("Файл не найден");
+        }
+    }
+
     @AfterEach
     public void Clean() {
         String FriendListName = "FriendList.txt";
