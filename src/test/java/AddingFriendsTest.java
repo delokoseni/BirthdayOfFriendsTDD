@@ -131,6 +131,26 @@ public class AddingFriendsTest {
         }
     }
 
+    @Test
+    public void GetFriendListTest() {
+        AddingFriends addingFriends = new AddingFriends();
+        String FriendListName = "FriendList.txt";
+        addingFriends.CreateFriendList(FriendListName);
+        String FriendName = "Иванов И.И.";
+        String FriendBirthday = "01.01.2001";
+        addingFriends.AddFriend(FriendListName, FriendName, FriendBirthday);
+        FriendName = "Иванов И.И.";
+        FriendBirthday = "01.01.2002";
+        addingFriends.AddFriend(FriendListName, FriendName, FriendBirthday);
+        File file = new File(FriendListName);
+        Assertions.assertTrue(file.exists(), "Файл должен быть успешно создан.");
+        String FriendList = addingFriends.GetFriendList(FriendListName);
+        Assertions.assertEquals("Иванов И.И. - 01.01.2001\n" +
+                "Иванов И.И. - 01.01.2002\n", FriendList, "Ожидалось получить список друзей:\n" +
+                "Иванов И.И. - 01.01.2001\n" +
+                "Иванов И.И. - 01.01.2002\n");
+    }
+
     @AfterEach
     public void Clean() {
         String FriendListName = "FriendList.txt";
