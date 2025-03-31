@@ -21,6 +21,7 @@ public class Main {
                     6) Следующий день рождения
                     7) Удалить друга из существующего списка
                     8) Изменить текущий список друзей
+                    9) Отобразить список друзей
                     Введите номер действия или 0 для выхода:\s""");
 
             String input = scanner.nextLine();
@@ -82,6 +83,9 @@ public class Main {
                 case "8":
                     System.out.print("Введите название списка друзей: ");
                     CurrentFriendList = scanner.nextLine();
+                    break;
+                case "9":
+                    System.out.print("Список ваших друзей:" + addingFriends.GetFriendList(CurrentFriendList));
                     break;
                 default:
                     System.out.println("Недопустимый выбор. Пожалуйста, выберите действие из списка.");
