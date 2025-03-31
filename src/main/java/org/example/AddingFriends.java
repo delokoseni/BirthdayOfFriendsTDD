@@ -62,8 +62,28 @@ public class AddingFriends {
     }
 
     public String RemindCurrentDay(String FriendListName, int CurrentDay) {
-        //todo реализовать метод RemindCurrentDay позднее до конца
-        return "Иванов И.И. - 01.01.2001";
+        List<String> matchingFriends = new ArrayList<>();
+        int targetDay = CurrentDay + 1;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(FriendListName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(" - ");
+                String[] dateParts = parts[1].split("\\.");
+
+                int month = Integer.parseInt(dateParts[0]);
+                if (month == targetDay) {
+                    matchingFriends.add(line);
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            return "Ошибка чтения файла";
+        }
+        if(matchingFriends.isEmpty()){
+            return "Нет подходящих друзей в списке.";
+        }
+        return String.join("\n", matchingFriends);
     }
 
     public String RemindCurrentWeek(String FriendListName, int CurrentWeek) {
