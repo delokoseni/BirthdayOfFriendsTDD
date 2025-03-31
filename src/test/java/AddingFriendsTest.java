@@ -161,6 +161,16 @@ public class AddingFriendsTest {
                 addingFriends.RemindCurrentMonth(FriendListName, CurrentMonth));
     }
 
+    @Test
+    public void RemindCurrentDayNoFriendsTest() {
+        AddingFriends addingFriends = new AddingFriends();
+        String FriendListName = "FriendList.txt";
+        addingFriends.CreateFriendList(FriendListName);
+        int CurrentDay = 0;
+        Assertions.assertEquals("Нет подходящих друзей в списке.",
+                addingFriends.RemindCurrentDay(FriendListName, CurrentDay));
+    }
+
     @AfterEach
     public void Clean() {
         String FriendListName = "FriendList.txt";
