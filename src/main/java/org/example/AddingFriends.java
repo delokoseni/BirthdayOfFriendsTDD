@@ -36,13 +36,18 @@ public class AddingFriends {
         return "Иванов И.И. - 01.01.2001";
     }
 
-    public String RemindCurrentDay(String FriendListName, int CurrentMonth) {
+    public String RemindCurrentDay(String FriendListName, int CurrentDay) {
         //todo реализовать метод RemindCurrentDay позднее до конца
         return "Иванов И.И. - 01.01.2001";
     }
 
-    public String RemindCurrentWeek(String FriendListName, int CurrentMonth) {
+    public String RemindCurrentWeek(String FriendListName, int CurrentWeek) {
         //todo реализовать метод RemindCurrentWeek позднее до конца
+        return "Иванов И.И. - 01.01.2001";
+    }
+
+    public String GetNextBirthday(String FriendListName) {
+        //todo реализовать метод GetNextBirthdayTest позднее до конца
         return "Иванов И.И. - 01.01.2001";
     }
 }
