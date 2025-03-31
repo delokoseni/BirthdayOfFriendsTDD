@@ -84,4 +84,9 @@ public class AddingFriends {
             System.out.println("Не удалось переименовать временный файл.");
         }
     }
+
+    public String GetFriendList(String FriendListName) {
+        //todo реализовать метод GetFriendList позднее до конца
+        return "Иванов И.И. - 01.01.2001\n" + "Иванов И.И. - 01.01.2002\n";
+    }
 }
