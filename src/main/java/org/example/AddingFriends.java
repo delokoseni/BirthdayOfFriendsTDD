@@ -68,16 +68,17 @@ public class AddingFriends {
 
     public String RemindCurrentDay(String FriendListName, int CurrentDay) {
         List<String> matchingFriends = new ArrayList<>();
-        int targetDay = CurrentDay + 1;
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FriendListName));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(" - ");
                 String[] dateParts = parts[1].split("\\.");
-
-                int month = Integer.parseInt(dateParts[0]);
-                if (month == targetDay) {
+                int day = Integer.parseInt(dateParts[0]);
+                int month = Integer.parseInt(dateParts[1]);
+                LocalDate birthDate = LocalDate.of(LocalDate.now().getYear(), month, day);
+                int birthDayOfYear = birthDate.getDayOfYear() - 1;
+                if (birthDayOfYear == CurrentDay) {
                     matchingFriends.add(line);
                 }
             }
@@ -85,7 +86,7 @@ public class AddingFriends {
         } catch (IOException e) {
             return "Ошибка чтения файла";
         }
-        if(matchingFriends.isEmpty()){
+        if(matchingFriends.isEmpty()) {
             return "Нет подходящих друзей в списке.";
         }
         return String.join("\n", matchingFriends);
