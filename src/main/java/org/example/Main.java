@@ -67,7 +67,7 @@ public class Main {
                 case "5":
                     System.out.println("День рождения сегодня:\n" +
                             addingFriends.RemindCurrentDay(CurrentFriendList,
-                                    LocalDate.now().getDayOfYear()));
+                                    LocalDate.now().getDayOfYear() - 1));
                     break;
                 case "6":
                     System.out.println("Следующий день рождения:\n" +
