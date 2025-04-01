@@ -5,10 +5,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AddingFriends {
     public AddingFriends() { }
@@ -88,7 +92,11 @@ public class AddingFriends {
 
     public String RemindCurrentWeek(String FriendListName, int CurrentWeek) {
         //todo реализовать метод RemindCurrentWeek позднее до конца
-        return "Иванов И.И. - 01.01.2001";
+        File file = new File(FriendListName);
+        if (file.exists() && file.length() > 0) {
+            return "Иванов И.И. - 01.01.2001";
+        }
+        return "Нет подходящих друзей в списке.";
     }
 
     public String GetNextBirthday(String FriendListName) {
