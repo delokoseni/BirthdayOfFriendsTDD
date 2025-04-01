@@ -92,12 +92,35 @@ public class AddingFriends {
     }
 
     public String RemindCurrentWeek(String FriendListName, int CurrentWeek) {
-        //todo реализовать метод RemindCurrentWeek позднее до конца
-        File file = new File(FriendListName);
-        if (file.exists() && file.length() > 0) {
-            return "Иванов И.И. - 01.01.2001";
+        List<String> matchingFriends = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+        LocalDate weekStart = LocalDate.of(today.getYear(), 1, 1)
+                .with(WeekFields.ISO.weekOfWeekBasedYear(), CurrentWeek + 1)
+                .with(java.time.DayOfWeek.MONDAY);
+        for (int i = 0; i < 7; i++) {
+            LocalDate date = weekStart.plusDays(i);
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(FriendListName));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(" - ");
+                    String[] dateParts = parts[1].split("\\.");
+                    int day = Integer.parseInt(dateParts[0]);
+                    int month = Integer.parseInt(dateParts[1]);
+                    LocalDate birthDate = LocalDate.of(today.getYear(), month, day);
+                    if (birthDate.getDayOfMonth() == date.getDayOfMonth() && birthDate.getMonthValue() == date.getMonthValue()) {
+                        matchingFriends.add(line);
+                    }
+                }
+                reader.close();
+            } catch (IOException e) {
+                return "Ошибка чтения файла";
+            }
         }
-        return "Нет подходящих друзей в списке.";
+        if(matchingFriends.isEmpty()) {
+            return "Нет подходящих друзей в списке.";
+        }
+        return String.join("\n", matchingFriends);
     }
 
     public String GetNextBirthday(String FriendListName) {

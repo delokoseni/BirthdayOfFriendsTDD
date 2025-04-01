@@ -62,7 +62,7 @@ public class Main {
                         week = calendar.get(Calendar.WEEK_OF_YEAR);
                     }
                     System.out.println("Результат:\n" +
-                            addingFriends.RemindCurrentMonth(CurrentFriendList, week));
+                            addingFriends.RemindCurrentWeek(CurrentFriendList, week));
                     break;
                 case "5":
                     System.out.println("День рождения сегодня:\n" +
