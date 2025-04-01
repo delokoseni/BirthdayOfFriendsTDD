@@ -56,10 +56,10 @@ public class Main {
                     int week = Integer.parseInt(scanner.nextLine());
                     Calendar calendar = Calendar.getInstance();
                     if(week == 1) {
-                        week = calendar.get(Calendar.WEEK_OF_YEAR) + 1;
+                        week = calendar.get(Calendar.WEEK_OF_YEAR);
                     }
                     else {
-                        week = calendar.get(Calendar.WEEK_OF_YEAR);
+                        week = calendar.get(Calendar.WEEK_OF_YEAR) - 1;
                     }
                     System.out.println("Результат:\n" +
                             addingFriends.RemindCurrentWeek(CurrentFriendList, week));
