@@ -136,7 +136,15 @@ public class AddingFriends {
     }
 
     public String GetFriendList(String FriendListName) {
-        //todo реализовать метод GetFriendList позднее до конца
-        return "Иванов И.И. - 01.01.2001\n" + "Иванов И.И. - 01.01.2002\n";
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(FriendListName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            return "Ошибка чтения файла";
+        }
+        return content.toString();
     }
 }

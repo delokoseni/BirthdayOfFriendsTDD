@@ -85,7 +85,7 @@ public class Main {
                     CurrentFriendList = scanner.nextLine();
                     break;
                 case "9":
-                    System.out.print("Список ваших друзей:" + addingFriends.GetFriendList(CurrentFriendList));
+                    System.out.print("Список ваших друзей:\n" + addingFriends.GetFriendList(CurrentFriendList));
                     break;
                 default:
                     System.out.println("Недопустимый выбор. Пожалуйста, выберите действие из списка.");
