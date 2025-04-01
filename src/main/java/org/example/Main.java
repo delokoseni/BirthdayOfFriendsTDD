@@ -65,12 +65,12 @@ public class Main {
                             addingFriends.RemindCurrentMonth(CurrentFriendList, week));
                     break;
                 case "5":
-                    System.out.println("День рождения сегодня:" +
+                    System.out.println("День рождения сегодня:\n" +
                             addingFriends.RemindCurrentDay(CurrentFriendList,
                                     LocalDate.now().getDayOfYear()));
                     break;
                 case "6":
-                    System.out.println("Следующий день рождения:" +
+                    System.out.println("Следующий день рождения:\n" +
                             addingFriends.GetNextBirthday(CurrentFriendList));
                     break;
                 case "7":

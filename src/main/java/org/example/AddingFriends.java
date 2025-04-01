@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -100,8 +101,42 @@ public class AddingFriends {
     }
 
     public String GetNextBirthday(String FriendListName) {
-        //todo реализовать метод GetNextBirthdayTest позднее до конца
-        return "Иванов И.И. - 01.01.2001";
+        List<String> closestBirthdays = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+        long minDiff = Long.MAX_VALUE;
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(FriendListName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(" - ");
+                if (parts.length != 2) continue;
+                String[] dateParts = parts[1].split("\\.");
+                if (dateParts.length != 3) continue;
+                int day = Integer.parseInt(dateParts[0]);
+                int month = Integer.parseInt(dateParts[1]);
+                LocalDate nextBirthday = LocalDate.of(today.getYear(), month, day);
+                if (nextBirthday.isBefore(today)) {
+                    nextBirthday = nextBirthday.plusYears(1);
+                }
+                long diff = ChronoUnit.DAYS.between(today, nextBirthday);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestBirthdays.clear();
+                    closestBirthdays.add(line);
+                }
+                else if (diff == minDiff) {
+                    closestBirthdays.add(line);
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            return "Ошибка чтения файла";
+        }
+        if (closestBirthdays.isEmpty()) {
+            return "Нет подходящих друзей в списке.";
+        }
+        return String.join("\n", closestBirthdays);
     }
 
     public void DeleteFriend(String FriendListName, String Friend) {
